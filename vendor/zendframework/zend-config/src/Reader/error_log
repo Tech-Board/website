@@ -1,0 +1,5 @@
+[23-Apr-2018 10:42:05 UTC] PHP Fatal error:  Interface 'Zend\Config\Reader\ReaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Reader/Yaml.php on line 18
+[23-Apr-2018 22:04:08 UTC] PHP Fatal error:  Interface 'Zend\Config\Reader\ReaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Reader/Json.php on line 20
+[23-Apr-2018 23:19:56 UTC] PHP Fatal error:  Interface 'Zend\Config\Reader\ReaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Reader/JavaProperties.php on line 18
+[24-Apr-2018 01:34:49 UTC] PHP Fatal error:  Interface 'Zend\Config\Reader\ReaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Reader/Xml.php on line 19
+[24-Apr-2018 19:15:47 UTC] PHP Fatal error:  Interface 'Zend\Config\Reader\ReaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Reader/Ini.php on line 18

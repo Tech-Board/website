@@ -1,0 +1,2 @@
+[30-Apr-2018 17:47:19 UTC] PHP Fatal error:  Interface 'Zend\Loader\ShortNameLocator' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-loader/src/PluginClassLocator.php on line 18
+[02-May-2018 11:30:43 UTC] PHP Fatal error:  Interface 'Zend\Loader\PluginClassLocator' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-loader/src/PluginClassLoader.php on line 20

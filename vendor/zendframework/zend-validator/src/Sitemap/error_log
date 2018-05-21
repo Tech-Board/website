@@ -1,0 +1,4 @@
+[05-May-2018 22:50:50 UTC] PHP Fatal error:  Class 'Zend\Validator\AbstractValidator' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-validator/src/Sitemap/Loc.php on line 23
+[13-May-2018 15:01:07 UTC] PHP Fatal error:  Class 'Zend\Validator\AbstractValidator' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-validator/src/Sitemap/Priority.php on line 20
+[15-May-2018 07:48:21 UTC] PHP Fatal error:  Class 'Zend\Validator\AbstractValidator' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-validator/src/Sitemap/Changefreq.php on line 20
+[15-May-2018 09:04:08 UTC] PHP Fatal error:  Class 'Zend\Validator\AbstractValidator' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-validator/src/Sitemap/Lastmod.php on line 21

@@ -1,0 +1,2 @@
+[23-Apr-2018 19:32:34 UTC] PHP Fatal error:  Interface 'Zend\Config\Exception\ExceptionInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Exception/RuntimeException.php on line 13
+[25-Apr-2018 01:34:41 UTC] PHP Fatal error:  Interface 'Zend\Config\Exception\ExceptionInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Exception/InvalidArgumentException.php on line 13

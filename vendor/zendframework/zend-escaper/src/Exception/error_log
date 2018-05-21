@@ -1,0 +1,2 @@
+[06-May-2018 12:44:27 UTC] PHP Fatal error:  Interface 'Zend\Escaper\Exception\ExceptionInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-escaper/src/Exception/RuntimeException.php on line 17
+[09-May-2018 18:14:14 UTC] PHP Fatal error:  Interface 'Zend\Escaper\Exception\ExceptionInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-escaper/src/Exception/InvalidArgumentException.php on line 17

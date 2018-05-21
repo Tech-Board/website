@@ -1,0 +1,50 @@
+<div class="row">
+	<div class="class=col-xxxl-9 col-xxl-9 col-lg-9 col-md-9">
+		<!-- update tabs. -->			
+		<div class="row">
+		  <div class="col-xxxl-4 col-md-4">
+			<ngx-status-card title="Kero zilizotatuliwa (solved)" status="50" type="success">
+			   <div class="status">50</div>
+			</ngx-status-card>
+		  </div>
+
+		  <div class="col-xxxl-4 col-md-4">
+			<ngx-status-card title="Kero zinazoangaliwa (pending)" type="warning">
+			  <div class="status">95</div>
+			</ngx-status-card>
+		  </div>
+
+		  <div class="col-xxxl-4 col-md-4">
+			<ngx-status-card title="Kero zilizoripotiwa (reported)" type="danger">
+			  <div class="status">83</div>
+			</ngx-status-card>
+		  </div>
+		</div>
+		<!-- end. update tabs. -->
+		
+		<!-- Camera feed --> 
+		<div class="row">
+			<div class="col-xxxl-12 col-md-12">
+				<ngx-security-cameras></ngx-security-cameras>
+		  </div>
+		</div>
+		<!-- .end camera feed -->
+		
+		<!-- Contacts --> 
+		<div class="row">
+		  <div class="col-xxxl-4 col-md-4">
+			 <ngx-contacts></ngx-contacts>
+		  </div>
+		  <div class="col-xxxl-4 col-md-4">
+			 <ngx-solar [chartValue]="72"></ngx-solar>
+		  </div>
+		  <div class="col-xxxl-4 col-md-4">
+			 <ngx-kitten></ngx-kitten>
+		  </div>
+		</div>
+		<!-- .end contacts -->
+	</div>
+	<div class="col-xxxl-3 col-xxl-3 col-lg-3 col-md-3">
+		<app-feed></app-feed>
+	</div>
+</div>

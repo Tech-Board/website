@@ -1,0 +1,4 @@
+[28-Apr-2018 02:09:05 UTC] PHP Fatal error:  Interface 'Zend\Uri\UriInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-uri/src/Uri.php on line 19
+[28-Apr-2018 14:46:54 UTC] PHP Fatal error:  Class 'Zend\Uri\Uri' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-uri/src/Mailto.php on line 21
+[29-Apr-2018 00:53:11 UTC] PHP Fatal error:  Class 'Zend\Uri\Uri' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-uri/src/Http.php on line 16
+[29-Apr-2018 14:46:48 UTC] PHP Fatal error:  Class 'Zend\Uri\Uri' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-uri/src/File.php on line 18

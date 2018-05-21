@@ -1,0 +1,6 @@
+[23-Apr-2018 11:57:52 UTC] PHP Fatal error:  Class 'Zend\Config\Writer\AbstractWriter' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Writer/Yaml.php on line 15
+[23-Apr-2018 23:44:25 UTC] PHP Fatal error:  Interface 'Zend\Config\Writer\WriterInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Writer/AbstractWriter.php on line 17
+[24-Apr-2018 15:28:26 UTC] PHP Fatal error:  Class 'Zend\Config\Writer\AbstractWriter' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Writer/Json.php on line 15
+[24-Apr-2018 16:44:13 UTC] PHP Fatal error:  Class 'Zend\Config\Writer\AbstractWriter' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Writer/Xml.php on line 16
+[24-Apr-2018 18:00:00 UTC] PHP Fatal error:  Class 'Zend\Config\Writer\AbstractWriter' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Writer/Ini.php on line 15
+[24-Apr-2018 23:03:08 UTC] PHP Fatal error:  Class 'Zend\Config\Writer\AbstractWriter' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-config/src/Writer/PhpArray.php on line 15
