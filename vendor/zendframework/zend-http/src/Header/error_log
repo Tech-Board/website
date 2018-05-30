@@ -48,3 +48,15 @@
 [21-May-2018 10:44:20 UTC] PHP Fatal error:  Class 'Zend\Http\Header\AbstractDate' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/Date.php on line 16
 [21-May-2018 12:00:08 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/Cookie.php on line 17
 [21-May-2018 14:31:42 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/Trailer.php on line 15
+[21-May-2018 17:03:17 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/IfNoneMatch.php on line 15
+[21-May-2018 18:19:04 UTC] PHP Fatal error:  Class 'Zend\Http\Header\AbstractLocation' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/Location.php on line 16
+[21-May-2018 19:34:52 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/IfRange.php on line 15
+[21-May-2018 22:06:26 UTC] PHP Fatal error:  Class 'Zend\Http\Header\GenericHeader' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/GenericMultiHeader.php on line 10
+[21-May-2018 23:22:14 UTC] PHP Fatal error:  Class 'Zend\Http\Header\AbstractDate' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/LastModified.php on line 16
+[21-May-2018 23:36:21 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/GenericHeader.php on line 14
+[21-May-2018 23:37:27 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/ContentLanguage.php on line 15
+[22-May-2018 00:56:15 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/ContentLength.php on line 15
+[22-May-2018 08:30:57 UTC] PHP Fatal error:  Class 'Zend\Http\Header\AbstractAccept' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/AcceptLanguage.php on line 18
+[22-May-2018 11:02:32 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/AbstractLocation.php on line 26
+[22-May-2018 13:34:05 UTC] PHP Fatal error:  Interface 'Zend\Http\Header\HeaderInterface' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/KeepAlive.php on line 15
+[24-May-2018 20:24:52 UTC] PHP Fatal error:  Class 'Zend\Http\Header\AbstractAccept' not found in /home/nangaien/public_html/techboard/vendor/zendframework/zend-http/src/Header/AcceptCharset.php on line 18

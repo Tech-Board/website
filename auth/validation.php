@@ -1,4 +1,14 @@
-<?php
+<?php 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+require_once('../vendor/autoload.php');
+use Zend\Config\Config;
+use Zend\Config\Factory;
+use Zend\Http\PhpEnvironment\Request;
+use Firebase\JWT\JWT;
+
 require_once('../connections/class.connection.php');
 require_once('class.auth.php');
 
@@ -16,18 +26,17 @@ if (!$db_users || !$db_roads){
 #Initialize the auth class. 
 $auth = new Auth($db_users,$db_roads,$config);
 
-$encrypted = $_GET['validation']; 
-$password = $config['password'];
-$method = $config['emode'];
 
+$token = $_GET['v'];
+$secretKey = base64_decode($config['jwtKey']);
+$token_get = JWT::decode($token,$secretKey, array('HS512'));
 
-$key = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-$decrypted = openssl_decrypt(base64_decode($encrypted), $method, $key, OPENSSL_RAW_DATA, $iv);
+$userId = $token_get->data->userId;
 
-var_dump($decrypted);
-
-echo 'decrypted to: ' . $decrypted . "\n\n"; echo "<br>";
-
-die();
+$confirm = $auth->emailValidate($userId);
+if($confirm){
+	echo "<h2>Email verification successful.</h2>";
+} else {
+	echo "<h2>Email verification has failed. Please contact us</h2>";
+}
 ?>

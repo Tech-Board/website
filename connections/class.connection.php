@@ -128,8 +128,9 @@ class Connection
    public function getDbConfig(){
 	   $configArray = array(
 			'webhost'  => 'nangaiengineering.com',
-			'password'      => '3sc3RLrpd17',
+			'password' => '3sc3RLrpd17',
 			'emode'    => 'aes-256-cbc',
+			'jwtKey'   => 'LSbLKHoJ3iJ9dBP6tnLU/+q9oCooe2rYKybsVGMBNpPZgGOcJtsuBFHZ7eAjvHF+8/Q38Nud/e0g98xPignOeg==',
 			'database' => array(
 			'adapter' => 'pdo_mysql',
 			'params'  => array(

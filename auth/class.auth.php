@@ -67,6 +67,21 @@ class Auth
 		}
 	}#end isAgencyExist. 
 	
+	
+	public function emailValidate($email){
+	   $u_verified = "Y";
+	   $stmt = $this->db_users->prepare("UPDATE techboardUsers SET u_verified = :u_verified WHERE u_email=:u_email");
+       $stmt->execute(array(
+			":u_email" => $email,
+			":u_verified" => $u_verified));
+			 
+		if($stmt){
+			return true;
+		} else {
+			return false; 
+		}
+	}#emailValidate
+	
 
     /*
      * generateHash : Method that generates hash for the user password.
@@ -81,6 +96,7 @@ class Auth
         }
     }
 
+	
     /*
      * Method to verify user.
      */
@@ -97,12 +113,13 @@ class Auth
 	public function newRegister($data)
     {
 		#get sent data.
-		$firstName 	  	  = $data->params->firstname;
-		$lastName 		  = $data->params->lastname;
-		$password 		  = $data->params->password;
-		$confirmPassword  = $data->params->confirmPassword;
-		$email			  = $data->params->email;
-		$agencyCode 	  = $data->params->agencyID;
+		$firstName 	  	  = $data->params[0]->firstname;
+		$lastName 		  = $data->params[0]->lastname;
+		$password 		  = $data->params[0]->password;
+		$confirmPassword  = $data->params[0]->confirmPassword;
+		$email			  = $data->params[0]->email;
+		$agencyCode 	  = $data->params[0]->agencyID;
+		$regDateTime 	  = time();
 		
 		if($firstName == ""){
 		   return  array('error'=>'First name is required');	
@@ -127,50 +144,34 @@ class Auth
         $pwd = $this->generateHash($password); #hash the password.
 
 		try
-		{ 
-		  #$query = "insert into techboardUsers (u_firstname,u_lastname,agencyCode,u_email,u_password) values
-			#		('$firstName','$lastName','$agencyCode','$email','$passwordHash');";
-		  #$result = mysqli_query($this->conn,$query);
-		 
-         $stmt = $this->db_users->prepare("INSERT INTO techboardUsers(u_firstname,u_lastname,agencyCode,u_email,u_password) VALUES(:u_firstname,:u_lastname,:agencyCode,:u_email,:u_password)");
+		{ 	 
+         $stmt = $this->db_users->prepare("INSERT INTO techboardUsers(u_firstname,u_lastname,agencyCode,u_email,u_password,regDateTime) VALUES(:u_firstname,:u_lastname,:agencyCode,:u_email,:u_password, :regDateTime)");
 				
          $stmt->bindparam(":u_firstname",$firstName);
          $stmt->bindparam(":u_lastname",$lastName);
          $stmt->bindparam(":agencyCode",$agencyCode);
 	     $stmt->bindparam(":u_email",$email);
 		 $stmt->bindparam(":u_password",$pwd);
+		 $stmt->bindparam(":regDateTime", $regDateTime);
 	     $result = $stmt->execute();
-		 
 		 
 		 
 		 if(!$result){
 			 $errMessage_1 = 'Failed to execute registration.';
 		 } else {
-			 $emailMessage = $this->send_mail($email,$firstName);
-			 if($emailMessage == true){
-				 return array(
-					'isSuccess' => true,
-					'message'	=> 'Registration has been successful. We have sent a link to your email for confirmation.'
-				 );
-			 } else {
-				  return array(
-					'isSuccess' => false,
-					'message'	=> 'Something has gone wrong. Issue has been reported. We will reach your shortly via your provided email.'
-				 );
-			 }
+			 return array(
+				'isSuccess' => true,
+				'message'	=> 'Registration has been successful. We have sent a link to your email for confirmation.'
+			 );
 		 }
-     }
-     catch(PDOException $ex)
-     {
-      echo $ex->getMessage();
-     }
+		} catch(PDOException $ex) {
+			echo $ex->getMessage();
+		}
     } #end register.
 	
 	
 	public function login($email,$agencyID,$password)
     {	
-	
-		//echo json_encode($password);
         try
         {
             $stmt = $this->db_users->prepare("SELECT * FROM techboardUsers WHERE u_email=:email");
@@ -180,26 +181,43 @@ class Auth
             #email exist.			
             if($stmt->rowCount() == 1) {
               #check if email is verified
-			  if($userRow['u_verified']=="Y") {
-                  $password_in_database  = $userRow['u_password'];
-                  $user_entered_password = $password;
-                  $status = $this->verify($user_entered_password, $password_in_database);
+			  if($userRow['u_verified']=="Y"){
+				  if($userRow['agencyCode'] == $agencyID){
+				  if($userRow['admin_verified']='Y'){
+                    $password_in_database  = $userRow['u_password'];
+                    $user_entered_password = $password;
+                    $status = $this->verify($user_entered_password, $password_in_database);
 
-                  if ($status == true){
-					return array(
+                    if ($status == true){
+					  return array(
 						'status' => true, 
+						'userId' => $userRow['user_id'],
+						'userName' => $userRow['u_email'],
+						'firstname' => $userRow['u_firstname'],
+						'lastname' => $userRow['u_lastname'],
 						'message' => 'Login accepted'
 						);
+				    } else {
+                      #password not found.
+                      return array(
+					    'status' => false, 
+					    'message' => 'Incorrect username or password'
+					  );
+                      exit;
+                    }
+				   } else {
+					  return array(
+					    'status' => false, 
+					    'message' => 'Your account has not yet been approved. You will receive an emailed confirmation once this is complete.'
+					  );
+				   }
 				  } else {
-                    #password not found.
-                    return array(
-					  'status' => false, 
-					  'message' => 'Incorrect username or password'
-					);
-                    exit;
-                  }
-              } else {
-	            #user inactive. either email not verified or has been limited access by admin.
+					  return array(
+					    'status' => false, 
+					    'message' => 'Seems like you are trying to log in with an incorrect Agency ID, Please check with your supervisor.'
+					  );
+				  }
+              } else { #user email not verified.
                 return array(
 					  'status' => false , 
 					  'message' => 'Please verify your email address before trying to login.'
@@ -296,23 +314,20 @@ class Auth
 
 	#cv joint 48000  wishibon 65000  bearing 60000
 
-   function send_mail($email,$firstName)
+   function send_mail($data,$jwt)
    {      
-      $message = "Hi ". $firstName ." Please click here to confirm your email address.";
-      $subject = "IMS system email confirmation.";
-	  
-	  $plaintext = "username|".$email."|email|".$email; 
-	  $key = password_hash($this->config['password'], PASSWORD_BCRYPT, ['cost' => 12]);
-	  $iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-	  
-	  $encrypted = base64_encode(openssl_encrypt($plaintext,$this->config['emode'],$key,OPENSSL_RAW_DATA, $iv)) ;
+   	  $firstName  = $data->params[0]->firstname;
+	  $lastName   = $data->params[0]->lastname;
+	  $email	  = $data->params[0]->email;
+	  $agencyCode = $data->params[0]->agencyID;
+		
 	  $headers="";
 	  $headers .= "MIME-Version: 1.0\r\n";
 	  $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-	  $headers .= "From: support@tech-board.com";
+	  $headers .= "From: confirmation@tech-board.com";
 		 
 		// the message
-		$url="http://".$this->config['webhost']."/techboard/auth/validation.php?validation=".$encrypted;
+		$url="http://".$this->config['webhost']."/techboard/auth/validation.php?v=".$jwt;
 
 		$msg="Hi ".$firstName . " <br>,
 		 
@@ -341,11 +356,54 @@ class Auth
 		 
 		// use wordwrap() if lines are longer than 70 characters
 		$msg = wordwrap($msg,80);
+		$subject = "Validate account";
 		// send email
-		mail($email,"Please validate your account",$msg,$headers);
-		return true;
+		return mail($email,$subject,$msg,$headers);
    }#send mail.
 
+   
+   
+     function send_resetLink($email,$jwt)
+   {      
+	  $headers="";
+	  $headers .= "MIME-Version: 1.0\r\n";
+	  $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+	  $headers .= "From: confirmation@tech-board.com";
+		 
+		// the message
+		$url="http://".$this->config['webhost']."/techboard/auth/passwordreset.php?v=".$jwt;
+
+		$msg="Hi<br>,
+		 
+		";
+		$msg.="Please click the following link to reset your password. <br>
+		 
+		";
+		$msg.="<a href='".$url."'>Reset my password</a> <br>
+		 
+		";
+		$msg.="Thanks, <br>
+		 
+		";
+		$msg.="The Management Team
+		 
+		";
+		$msg.="&nbsp; <br>
+		 
+		";
+		$msg.="If you have problems with the link above, copy and paste the following URL into a browser <br>
+		 
+		";
+		$msg.="".$url."
+		 
+		";
+		 
+		// use wordwrap() if lines are longer than 70 characters
+		$msg = wordwrap($msg,80);
+		$subject = "Reset password";
+		// send email
+		return mail($email,$subject,$msg,$headers);
+   }#send mail.
 //end of USER class.   
 }
 ?>
